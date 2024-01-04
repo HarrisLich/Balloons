@@ -1,0 +1,7 @@
+name: Balloons
+version: '1.0-SNAPSHOT'
+main: de.harrisblog.nms.Nms
+api-version: 1.19
+commands:
+  balloons:
+    usage: /balloons

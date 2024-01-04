@@ -1,0 +1,165 @@
+balloons:
+  kfc_balloon:
+    name: "&6&lKFC Bucket Balloon"
+    lore:
+      - "&fA KFC Chicken Bucket to always keep"
+      - "&fyou satisfied!"
+      - " "
+      - "&7Abilities:"
+      - "&fAuto-Feed."
+      - " "
+      - "&7&oAttach this to any Axe/Sword"
+      - "&7&oto apply a visual balloon"
+      - " "
+      - "&7Drag n' Drop onto item to attach."
+      - "&7Once attached, it cannot be removed!"
+    skull_value: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzE2YTZkM2UzZTRkNGQwNTllOGEyYWExZWQzYTIxOWIzNTgwZWIwOTk2MmNjMjVkYWUzM2Q4YWUzOWU2ZTE2OSJ9fX0="
+    effects:
+      #POTION:[EFFECT]:[AMPLIFIER]:[DURATION]:[CHANCE]
+      #FEED:[AMOUNT]:[CHANCE]
+      - "FEED:2:1"
+    appliesTo:
+      - "SWORD"
+      - "AXE"
+  puss_in_boots:
+    name: "&c&lPuss In Boots Balloon"
+    lore:
+      - "&fGain the swiftness of the famed"
+      - "&fPuss In Boots!"
+      - " "
+      - "&7Abilities:"
+      - "&fSpeed 4."
+      - " "
+      - "&7&oAttach this to any Axe/Sword"
+      - "&7&oto apply a visual balloon"
+      - " "
+      - "&7Drag n' Drop onto item to attach."
+      - "&7Once attached, it cannot be removed!"
+    skull_value: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTJlZTVlZDk3NTdhODUwNjk5MzI0ZDMxZmJiYmQ4Yjc4NTY3M2FmOTM3YjM4NTMyNmNkNzAxYWU4ZDJkMGRkZiJ9fX0="
+    effects:
+      - "POTION:SPEED:2:20:1"
+    appliesTo:
+      - "SWORD"
+      - "AXE"
+  sheep:
+    name: "&f&lSheep Balloon"
+    lore:
+      - "&fThe blessing of the sheeps grants"
+      - "&fimmunity to fall damage!"
+      - " "
+      - "&7Abilities:"
+      - "&fFall Damage Immunity."
+      - " "
+      - "&7&oAttach this to any Axe/Sword"
+      - "&7&oto apply a visual balloon"
+      - " "
+      - "&7Drag n' Drop onto item to attach."
+      - "&7Once attached, it cannot be removed!"
+    skull_value: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjU5ZTI1YzI1NDNkOTAwMzNhYzJkYWUzNmMwZWJkOGJkODg3ODBlMTdjM2I0YzcyZTU5YjlhODEzOTc5ZmVkNyJ9fX0="
+    effects:
+      - "IMMUNITY:FALL_DAMAGE:1"
+    appliesTo:
+      - "SWORD"
+      - "AXE"
+  medkit:
+    name: "&a&lMedkit Balloon"
+    lore:
+      - "&fThe medkit constantly applies"
+      - "&fregeneration, healing you!"
+      - " "
+      - "&7Abilities:"
+      - "&fRegeneration Effect."
+      - " "
+      - "&7&oAttach this to any Axe/Sword"
+      - "&7&oto apply a visual balloon"
+      - " "
+      - "&7Drag n' Drop onto item to attach."
+      - "&7Once attached, it cannot be removed!"
+    skull_value: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmQwMzg5ZDNkZGJiYmEzZmMwZDY3MWYzZmFhZmI2NjMwZTZmZWM3N2NhYWZmZDNmNWZmNTlkYmVkOTc3NzQ0OSJ9fX0="
+    effects:
+      - "POTION:REGENERATION:0:20:1"
+    appliesTo:
+      - "SWORD"
+      - "AXE"
+  CHARIZARD:
+    name: "&4&lCharizard Balloon"
+    lore:
+      - "&fA mythical &4Charizard &fblasts magma"
+      - "&fat your opponents!"
+      - " "
+      - "&7Abilities:"
+      - "&fCharizard Effect."
+      - " "
+      - "&7&oAttach this to any Axe/Sword"
+      - "&7&oto apply a visual balloon"
+      - " "
+      - "&7Drag n' Drop onto item to attach."
+      - "&7Once attached, it cannot be removed!"
+    skull_value: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGI2MDE1MzVjYjk0NTRlMGM5YzM1Y2YwMjEwNGFlMWNlNTE5MThhZjM4NDM2YmQ1MzExOWY1NGY1OGY1MTkwIn19fQ=="
+    effects:
+      - "CHARIZARD:5:1"
+    appliesTo:
+      - "SWORD"
+      - "AXE"
+  kachow:
+    name: "&c&lLightning McQueen Balloon"
+    lore:
+      - "&fHe's the fastest alive,"
+      - "&cLightning &fstrikes when he races!"
+      - " "
+      - "&7Abilities:"
+      - "&fGodspeed Effect."
+      - " "
+      - "&7&oAttach this to any Axe/Sword"
+      - "&7&oto apply a visual balloon"
+      - " "
+      - "&7Drag n' Drop onto item to attach."
+      - "&7Once attached, it cannot be removed!"
+    skull_value: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2YwZWVlYzQ5ODA5YzllNjUwZTdlYjZmNjQ5MGZmNWUyNTQ1YTBiMWM1YmEyYzY2OTY4MDAxZTQ1ZDU0MjJiIn19fQ=="
+    effects:
+      - "GODSPEED:0.003:4:6.0"
+    appliesTo:
+      - "SWORD"
+      - "AXE"
+  paladin:
+    name: "&6&lPaladin Balloon"
+    lore:
+      - "&fProtected by the armored,"
+      - "&6Paladins' &fspells!"
+      - " "
+      - "&7Abilities:"
+      - "&fResistance Effect."
+      - " "
+      - "&7&oAttach this to any Axe/Sword"
+      - "&7&oto apply a visual balloon"
+      - " "
+      - "&7Drag n' Drop onto item to attach."
+      - "&7Once attached, it cannot be removed!"
+    skull_value: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjBmZDJjYzkxMTZjMGY3MjRiZGNkYmYyZTk2MzNjYjBhN2Q0NTNmOGIzYTFhZDlkMTQ5M2U1ZTZmMTI4MTU1NSJ9fX0="
+    effects:
+      - "POTION:0:20:1"
+    appliesTo:
+      - "SWORD"
+      - "AXE"
+  snowglobe:
+    name: "&f&lSnow Globe Balloon"
+    lore:
+      - "&fChance to slow down enemies using"
+      - "&fthe essence of the Snow Glove"
+      - " "
+      - "&7Abilities:"
+      - "&fSnow Globe Effect."
+      - " "
+      - "&7&oAttach this to any Axe/Sword"
+      - "&7&oto apply a visual balloon"
+      - " "
+      - "&7Drag n' Drop onto item to attach."
+      - "&7Once attached, it cannot be removed!"
+    skull_value: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTMyMjlmODUyNTcyNjY4NGZiMDIyN2RhZDc2MjFmMDVmMGI4YjVkNThhODY5M2ZkMGVhMDY4ODM0OWYxZDUzYyJ9fX0="
+    effects:
+      - "SNOWGLOBE:1:5:5:5"
+    appliesTo:
+      - "SWORD"
+      - "AXE"
+
+
