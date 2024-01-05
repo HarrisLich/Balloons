@@ -1,3 +1,13 @@
+messages:
+  on_apply: "&aSuccessfully Applied Balloon!"
+  balloon_already_applied: "&cA Balloon is already applied to this item!"
+  help:
+    - "&4&lBalloons"
+    - "&7--------"
+    - "&4&lBalloons: &7/balloons admin | displays all balloons"
+    - "&4&lBalloons: &7/balloons | displays all balloons"
+    - "&4&lBalloons: &7/balloons help | displays all commands"
+    - "&4&lBalloons: &7/balloons give [key]| gives player a balloon item, key = config key"
 balloons:
   kfc_balloon:
     name: "&6&lKFC Bucket Balloon"
@@ -15,8 +25,12 @@ balloons:
       - "&7Once attached, it cannot be removed!"
     skull_value: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzE2YTZkM2UzZTRkNGQwNTllOGEyYWExZWQzYTIxOWIzNTgwZWIwOTk2MmNjMjVkYWUzM2Q4YWUzOWU2ZTE2OSJ9fX0="
     effects:
-      #POTION:[EFFECT]:[AMPLIFIER]:[DURATION]:[CHANCE]
+      #POTION:[EFFECT]:[AMPLIFIER]:[DURATION (ticks = seconds * 20)]:[CHANCE]
       #FEED:[AMOUNT]:[CHANCE]
+      #IMMUNITY:[DAMAGE_TYPE]:[CHANCE]
+      #CHARIZARD:[#ofTargets]:[CHANCE]
+      #GODSPEED:[CHANCE]:[#ofTargets]:[DAMAGE]
+      #SNOWGLOBE:[CHANCE]:[#OFTARGETS]:[AMPLIFIER]:[DURATION (seconds)]
       - "FEED:2:1"
     appliesTo:
       - "SWORD"
@@ -137,7 +151,7 @@ balloons:
       - "&7Once attached, it cannot be removed!"
     skull_value: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjBmZDJjYzkxMTZjMGY3MjRiZGNkYmYyZTk2MzNjYjBhN2Q0NTNmOGIzYTFhZDlkMTQ5M2U1ZTZmMTI4MTU1NSJ9fX0="
     effects:
-      - "POTION:0:20:1"
+      - "POTION:DAMAGE_RESISTANCE:0:20:1"
     appliesTo:
       - "SWORD"
       - "AXE"
@@ -145,7 +159,7 @@ balloons:
     name: "&f&lSnow Globe Balloon"
     lore:
       - "&fChance to slow down enemies using"
-      - "&fthe essence of the Snow Glove"
+      - "&fthe essence of the Snow Globe."
       - " "
       - "&7Abilities:"
       - "&fSnow Globe Effect."
@@ -161,5 +175,50 @@ balloons:
     appliesTo:
       - "SWORD"
       - "AXE"
+  hasty:
+    name: "&f&lHasty Balloon"
+    lore:
+      - "&fHarness the essence of haste"
+      - "&fto gain a permanent haste effect."
+      - " "
+      - "&7Abilities:"
+      - "&fHaste effect."
+      - " "
+      - "&7&oAttach this to any Shovel/Axe/Pickaxe/Hoe"
+      - "&7&oto apply a visual balloon"
+      - " "
+      - "&7Drag n' Drop onto item to attach."
+      - "&7Once attached, it cannot be removed!"
+    skull_value: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWM3ZjA3NDc5Njg3OTVlOGJmNWQ4MzZhODMxZmIwY2VlMThhNTc1MGZlNmQ5NGYwYzE1MTA5ZDI4M2ExYWJhZSJ9fX0="
+    effects:
+      - "POTION:FAST_DIGGING:0:20:1"
+    appliesTo:
+      - "SHOVEL"
+      - "HOE"
+      - "AXE"
+      - "PICKAXE"
+  dynamite:
+    name: "&f&lDynamite Balloon"
+    lore:
+      - "&fGain protection from explosions,"
+      - "&fyou feel a new immunity to explosions."
+      - " "
+      - "&7Abilities:"
+      - "&fExplosive Damage Immunity."
+      - " "
+      - "&7&oAttach this to any Axe/Sword"
+      - "&7&oto apply a visual balloon"
+      - " "
+      - "&7Drag n' Drop onto item to attach."
+      - "&7Once attached, it cannot be removed!"
+    skull_value: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWViZmRhY2UzMWFjNTljZGQzOTc4NjlhYzQ0NzFkOGM3ZGRiNGI0ZDZmYTVlOTkyOGJiZGE0NWYwOTIyMzBkMCJ9fX0="
+    effects:
+      - "POTION:FAST_DIGGING:0:20:1"
+    appliesTo:
+      - "SHOVEL"
+      - "HOE"
+      - "AXE"
+      - "PICKAXE"
+
 
 

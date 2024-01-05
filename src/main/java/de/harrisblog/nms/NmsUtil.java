@@ -45,14 +45,20 @@ public class NmsUtil {
     }
     public static void spawnBalloon(Player p, ItemStack i){
         Location l = p.getLocation();
-        l.add(0.0, 3.0, 0.0);
+        if(p.isFlying()) l.add(0.0, 1.5, 0.0);
+        else l.add(0.0, 3.0, 0.0);
         Entity batEntity = p.getWorld().spawnEntity(l, EntityType.BAT);
         Bat bat = (Bat) batEntity;
         bat.setAwake(false);
         bat.setCustomName(p.getName());
         bat.setInvulnerable(true);
         bat.setInvisible(true);
-        Location l2 = l.add(0.0, -1.0, 0.0);
+        Location l2 = l;
+        if(p.isFlying()){
+            l2.add(0.0, -3.0, 0.0);
+        }else{
+            l2.add(0.0, -1.5, 0.0);
+        }
         ArmorStand armorStand = (ArmorStand) p.getWorld().spawnEntity(l2, EntityType.ARMOR_STAND);
         Balloon balloon = Nms.getBalloonsManager().getAppliedBalloonFromItem(i);
         armorStand.setCustomName(p.getName());
@@ -94,7 +100,12 @@ public class NmsUtil {
                     bat.setAwake(false);
                     bat.setAware(false);
                     Location l = p.getLocation();
-                    l.add(0.0, 3.0, 0.0);
+                    if(p.isFlying()){
+                        l.add(0.0, 3.6,0.0);
+                    }else{
+                        l.add(0.0, 3.0, 0.0);
+                    }
+
                     bat.teleport(l);
                     sendAttachPacket(p, nearby);
                 }else if(nearby.getType() == EntityType.ARMOR_STAND){

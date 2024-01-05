@@ -37,16 +37,14 @@ public class NmsCommand implements CommandExecutor {
             return true;
         }else if(strings.length == 1 && strings[0].equalsIgnoreCase("effects") && commandSender.hasPermission("balloons.effects")){
             for(CustomEffect effect : Nms.getCustomEffectsManager().getEffects().values()){
-                commandSender.sendMessage(effect.getName());
+                commandSender.sendMessage(effect.getUsage());
             }
             return true;
         }else if(strings.length == 1 && strings[0].equalsIgnoreCase("help") && commandSender.hasPermission("balloons.help")){
-            commandSender.sendMessage(NmsUtil.format("&4&lBalloons"));
-            commandSender.sendMessage(NmsUtil.format("&7--------"));
-            commandSender.sendMessage(NmsUtil.format("&4&lBalloons: &7/balloons admin | displays all balloons"));
-            commandSender.sendMessage(NmsUtil.format("&4&lBalloons: &7/balloons | displays all balloons"));
-            commandSender.sendMessage(NmsUtil.format("&4&lBalloons: &7/balloons help | displays all commands"));
-            commandSender.sendMessage(NmsUtil.format("&4&lBalloons: &7/balloons give [key]| gives player a balloon item, key = config key"));
+            List<String> help = Nms.getPlugin().getConfig().getStringList("messages.help");
+            for(String str : help){
+                commandSender.sendMessage(NmsUtil.format(str));
+            }
             return true;
         }else if(strings.length == 2 && strings[0].equalsIgnoreCase("give") && commandSender.hasPermission("balloons.give")){
             String balloonKey = strings[1];

@@ -21,6 +21,7 @@ public class DamageEffect extends CustomEffect {
         dmg = dmg + (dmg * Double.parseDouble(args[0]));
         p.sendMessage("after: " + Double.toString(dmg));
         e.setDamage(dmg);
+
     }
 
     public void cancel(Event event, String[] args){

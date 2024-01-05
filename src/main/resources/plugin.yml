@@ -2,6 +2,24 @@ name: Balloons
 version: '${project.version}'
 main: de.harrisblog.nms.Nms
 api-version: 1.19
+depend: [NBTAPI]
 commands:
   balloons:
     usage: /balloons
+permissions:
+  balloons.*:
+    children:
+      - balloons.admin
+      - balloons.effects
+      - balloons.give
+      - balloons.help
+  balloons.admin:
+    description: /balloons admin
+  balloons.effects:
+    description: /balloons effects
+  balloons.give:
+    description: /balloons give
+  balloons.help:
+    description: /balloons help
+
+

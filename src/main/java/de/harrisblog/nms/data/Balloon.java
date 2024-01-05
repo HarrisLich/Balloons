@@ -65,6 +65,27 @@ public class Balloon {
                 appliesTo.add(Material.STONE_AXE);
                 appliesTo.add(Material.GOLDEN_AXE);
                 appliesTo.add(Material.NETHERITE_AXE);
+            }else if(s.equalsIgnoreCase("PICKAXE")){
+                appliesTo.add(Material.DIAMOND_PICKAXE);
+                appliesTo.add(Material.WOODEN_PICKAXE);
+                appliesTo.add(Material.IRON_PICKAXE);
+                appliesTo.add(Material.STONE_PICKAXE);
+                appliesTo.add(Material.GOLDEN_PICKAXE);
+                appliesTo.add(Material.NETHERITE_PICKAXE);
+            }else if(s.equalsIgnoreCase("SHOVEL")){
+                appliesTo.add(Material.DIAMOND_SHOVEL);
+                appliesTo.add(Material.WOODEN_SHOVEL);
+                appliesTo.add(Material.IRON_SHOVEL);
+                appliesTo.add(Material.STONE_SHOVEL);
+                appliesTo.add(Material.GOLDEN_SHOVEL);
+                appliesTo.add(Material.NETHERITE_SHOVEL);
+            }else if(s.equalsIgnoreCase("HOE")){
+                appliesTo.add(Material.DIAMOND_HOE);
+                appliesTo.add(Material.WOODEN_HOE);
+                appliesTo.add(Material.IRON_HOE);
+                appliesTo.add(Material.STONE_HOE);
+                appliesTo.add(Material.GOLDEN_HOE);
+                appliesTo.add(Material.NETHERITE_HOE);
             }
         }
     }

@@ -26,10 +26,13 @@ public class BalloonApplyListener implements Listener {
         ItemStack itemClicked = e.getCurrentItem();
         ItemStack itemHeld = e.getCursor();
         if(itemHeld != null && itemClicked != null && itemHeld.getItemMeta() != null && itemClicked.getItemMeta() != null){
+            if(NmsUtil.hasBalloonApplied(itemClicked)) {
+                p.sendMessage(NmsUtil.format(Nms.getPlugin().getConfig().getString("messages.balloon_already_applied")));
+                return;
+            }
             Balloon balloon = Nms.getBalloonsManager().getBalloonFromItem(itemHeld);
             if(balloon == null) return;
             NBTItem nbtItem = new NBTItem(itemHeld);
-            p.sendMessage(Boolean.toString(nbtItem.hasTag("balloon")));
             if(nbtItem.hasTag("balloon") && balloon.getAppliesTo().contains(itemClicked.getType()) && !NmsUtil.hasBalloonApplied(itemClicked)){
                 //We can apply the balloon onto the item
                 nbtItem.clearNBT();
@@ -51,6 +54,7 @@ public class BalloonApplyListener implements Listener {
                 itemClicked.setItemMeta(meta);
                 p.getInventory().setItem(e.getSlot(), itemClicked);
                 p.updateInventory();
+                p.sendMessage(NmsUtil.format(Nms.getPlugin().getConfig().getString("messages.on_apply")));
             }
         }
     }
