@@ -1,20 +1,15 @@
 package de.harrisblog.nms;
 
 import de.harrisblog.nms.commands.NmsCommand;
+import de.harrisblog.nms.commands.NmsCommandCompleter;
 import de.harrisblog.nms.data.Balloon;
 import de.harrisblog.nms.data.CustomEffect;
 import de.harrisblog.nms.data.EffectType;
-import de.harrisblog.nms.listeners.AdminGuiListener;
-import de.harrisblog.nms.listeners.BalloonApplyListener;
-import de.harrisblog.nms.listeners.BalloonEventListener;
-import de.harrisblog.nms.listeners.GuiListener;
+import de.harrisblog.nms.listeners.*;
 import de.harrisblog.nms.managers.BalloonsManager;
 import de.harrisblog.nms.managers.CustomEffectsManager;
-import net.minecraft.network.protocol.game.PacketPlayOutAttachEntity;
-import net.minecraft.server.level.EntityPlayer;
+import de.harrisblog.nms.versions.spigot1_19_4.NmsUtil1_19_4;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_19_R3.entity.CraftPlayer;
 import org.bukkit.entity.*;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
@@ -27,7 +22,19 @@ public final class Nms extends JavaPlugin {
 
     //TODO
     //Swapping between two balloons doesnt switch which balloon appears
-    //More abilities, more premade balloons
+    //
+    //ABILITIES
+    //DAMAGE_ARMOR:[AMOUNT]:[CHANCE] damage players armor durability by specified amount
+    //
+    //DROPS:[MULTIPLIER]:[CHANCE] chance to multiply mob drops
+    //EXP -> rework
+
+
+    //UPDATE
+    //Removed NBT API Dependency
+    //New Effects
+    //Command completer
+
 
     private static Plugin plugin;
     private static CustomEffectsManager customEffectsManager;
@@ -43,6 +50,7 @@ public final class Nms extends JavaPlugin {
         customEffectsManager = new CustomEffectsManager();
         balloonsManager = new BalloonsManager();
         getCommand("balloons").setExecutor(new NmsCommand());
+        getCommand("balloons").setTabCompleter(new NmsCommandCompleter());
 
         registerListeners();
 
@@ -50,9 +58,10 @@ public final class Nms extends JavaPlugin {
             @Override
             public void run() {
                 for(Player p : plugin.getServer().getOnlinePlayers()){
+                    NmsUtil1_19_4.balloonCleanup(p);
                     ItemStack itemInHand = p.getItemInHand();
                     if(itemInHand != null && itemInHand.hasItemMeta() && itemInHand.getItemMeta().hasLore()){
-                        if(NmsUtil.hasBalloonApplied(itemInHand)){
+                        if(NmsUtil1_19_4.hasBalloonApplied(itemInHand)){
                             //player is holding a item with a balloon applied
                             boolean hasNearbyBalloon = false;
                             for(Entity nearby : p.getNearbyEntities(10,10,10)){
@@ -61,9 +70,9 @@ public final class Nms extends JavaPlugin {
                                 }
                             }
                             if(!hasNearbyBalloon){
-                                NmsUtil.spawnBalloon(p, itemInHand);
+                                NmsUtil1_19_4.spawnBalloon(p, itemInHand);
                             }
-                            NmsUtil.teleportBalloonToPlayer(p);
+                            NmsUtil1_19_4.teleportBalloonToPlayer(p);
                             //Run passive effects
                             Balloon balloon = balloonsManager.getAppliedBalloonFromItem(itemInHand);
                             if(balloon == null) return;
@@ -77,7 +86,7 @@ public final class Nms extends JavaPlugin {
                     }
 
                     //Balloon Cleanup
-                    NmsUtil.balloonCleanup(p);
+
                 }
             }
         }, 20L, 1L);
@@ -107,6 +116,7 @@ public final class Nms extends JavaPlugin {
         plugin.getServer().getPluginManager().registerEvents(new BalloonEventListener(), plugin);
         plugin.getServer().getPluginManager().registerEvents(new AdminGuiListener(), plugin);
         plugin.getServer().getPluginManager().registerEvents(new GuiListener(), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new PlayerDisconnect(), plugin);
     }
 
     public static Plugin getPlugin() {

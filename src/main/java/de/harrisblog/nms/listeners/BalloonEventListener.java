@@ -5,18 +5,45 @@ import de.harrisblog.nms.data.Balloon;
 import de.harrisblog.nms.data.CustomEffect;
 import de.harrisblog.nms.data.EffectType;
 import org.bukkit.Material;
+import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 
 public class BalloonEventListener implements Listener {
+
+    @EventHandler
+    public void onMobDeath(EntityDamageByEntityEvent e){
+        if(!(e.getEntity() instanceof Mob)) return;
+        Mob mob = (Mob) e.getEntity();
+        if(!(e.getDamager() instanceof Player)) return;
+        Player p = (Player) e.getDamager();
+        if(e.getDamage() >= mob.getHealth()){
+            //mob is dead, call effects
+            if(Nms.getArmorStands().containsKey(p)){
+                //Item in hand will always have a balloon because armor stand is summoned
+                ItemStack i = p.getItemInHand();
+                Balloon balloon = Nms.getBalloonsManager().getAppliedBalloonFromItem(i);
+                if(balloon == null) return;
+                if(!balloon.getAppliesTo().contains(i.getType())) return;
+                HashMap<String, CustomEffect> effects = balloon.getEffects();
+                for(CustomEffect effect: effects.values()){
+                    if(effect != null && effect.getType().equals(EffectType.MOB_KILL)){
+                        Nms.getCustomEffectsManager().runCustomEffect(effect, (Event) e, balloon, null);
+                    }
+                }
+
+            }
+        }
+    }
     @EventHandler
     public void onMoveEvent(PlayerMoveEvent event){
         if(!(event.getPlayer() instanceof Player)) return;

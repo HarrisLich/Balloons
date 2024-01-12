@@ -9,7 +9,7 @@ import javax.annotation.Nullable;
 
 public class DamageEffect extends CustomEffect {
     public DamageEffect(){
-        super("DAMAGE", "DAMAGE:[0.0-1.0]", "Increases attack by chosen %", "ATTACK");
+        super("DAMAGE", "DAMAGE:[MULTIPLIER]:[CHANCE]", "Increases attack by chosen multiplier", "ATTACK");
     }
 
     public void run(Event event, String[] args, @Nullable Player player){
@@ -17,11 +17,12 @@ public class DamageEffect extends CustomEffect {
         if(!(e.getDamager() instanceof Player)) return;
         Player p = (Player) e.getDamager();
         double dmg = e.getDamage();
-        p.sendMessage(Double.toString(dmg));
-        dmg = dmg + (dmg * Double.parseDouble(args[0]));
-        p.sendMessage("after: " + Double.toString(dmg));
-        e.setDamage(dmg);
-
+        double chance = Double.parseDouble(args[1]);
+        double rnd = Math.random();
+        if(rnd < chance){
+            dmg = (dmg * Double.parseDouble(args[0]));
+            e.setDamage(dmg);
+        }
     }
 
     public void cancel(Event event, String[] args){

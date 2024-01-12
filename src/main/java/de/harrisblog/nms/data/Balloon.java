@@ -2,19 +2,14 @@ package de.harrisblog.nms.data;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import de.harrisblog.nms.versions.spigot1_19_4.NBTUtil1_19_4;
 import de.harrisblog.nms.Nms;
-import de.harrisblog.nms.NmsUtil;
-import de.tr7zw.nbtapi.NBT;
-import de.tr7zw.nbtapi.NBTItem;
-import net.minecraft.nbt.NBTTagCompound;
+import de.harrisblog.nms.versions.spigot1_19_4.NmsUtil1_19_4;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.craftbukkit.v1_19_R3.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.persistence.PersistentDataContainer;
-import org.bukkit.persistence.PersistentDataType;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -35,7 +30,7 @@ public class Balloon {
     private List<Material> appliesTo;
 
     public Balloon(String name, List<String> lore, String skull_value, String key, List<String> effectList, List<String> appliesToList){
-        this.name = NmsUtil.format(name);
+        this.name = NmsUtil1_19_4.format(name);
         this.lore = formatLore(lore);
         this.key = key;
         this.skull_value = skull_value;
@@ -128,7 +123,7 @@ public class Balloon {
     private List<String> formatLore(List<String> strs) {
         List<String> l = new ArrayList<>();
         for (String s : strs)
-            l.add(NmsUtil.format(s));
+            l.add(NmsUtil1_19_4.format(s));
         return l;
     }
 
@@ -151,9 +146,7 @@ public class Balloon {
         }
         i.setItemMeta(skullMeta);
         //set nbt
-        NBTItem nbtItem = new NBTItem(i);
-        nbtItem.setString("balloon", this.getName());
-        nbtItem.applyNBT(i);
+        i = NBTUtil1_19_4.setNBT(i, "balloon", this.getName());
 
         return i;
     }

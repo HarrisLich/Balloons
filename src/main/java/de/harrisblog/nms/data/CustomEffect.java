@@ -1,6 +1,6 @@
 package de.harrisblog.nms.data;
 
-import de.harrisblog.nms.NmsUtil;
+import de.harrisblog.nms.versions.spigot1_19_4.NmsUtil1_19_4;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
@@ -19,7 +19,7 @@ public abstract class CustomEffect {
         this.name = name;
         this.usage = usage;
         this.description = description;
-        this.type = NmsUtil.getEffectTypeFromString(type);
+        this.type = NmsUtil1_19_4.getEffectTypeFromString(type);
     }
 
     public abstract void run(Event paramEvent, String[] paramArrayOfString, @Nullable Player p);

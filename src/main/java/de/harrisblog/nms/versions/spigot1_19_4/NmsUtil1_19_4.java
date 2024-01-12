@@ -1,15 +1,17 @@
-package de.harrisblog.nms;
+package de.harrisblog.nms.versions.spigot1_19_4;
 
+import de.harrisblog.nms.Nms;
 import de.harrisblog.nms.data.Balloon;
 import de.harrisblog.nms.data.EffectType;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.protocol.game.PacketPlayOutAttachEntity;
 import net.minecraft.server.level.EntityPlayer;
-import net.minecraft.world.damagesource.DamageSource;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_19_R3.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_19_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_19_R3.inventory.CraftItemStack;
 import org.bukkit.entity.*;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
@@ -17,7 +19,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
-public class NmsUtil {
+public class NmsUtil1_19_4 {
     public static Object getNMSEntity(Entity entity) {
         return ((CraftEntity) entity).getHandle();
     }
@@ -40,6 +42,8 @@ public class NmsUtil {
                 return EffectType.SWIM;
             case "PASSIVE":
                 return EffectType.PASSIVE;
+            case "MOB_KILL":
+                return EffectType.MOB_KILL;
         }
         return null;
     }
@@ -79,13 +83,13 @@ public class NmsUtil {
                 if(!p.getItemInHand().hasItemMeta()){
                     entity.remove();
                     Nms.getPlugin().getLogger().info("Balloon Removed");
-                    ArmorStand armorStand = Nms.getArmorStands().get(p);
+                    ArmorStand armorStand = Nms.getArmorStands().remove(p);
                     armorStand.remove();
                 }
                 if(p.getItemInHand().hasItemMeta() && !(p.getItemInHand().getItemMeta().hasLore())){
                     entity.remove();
                     Nms.getPlugin().getLogger().info("Balloon Removed");
-                    ArmorStand armorStand = Nms.getArmorStands().get(p);
+                    ArmorStand armorStand = Nms.getArmorStands().remove(p);
                     armorStand.remove();
                 }
             }
@@ -121,7 +125,7 @@ public class NmsUtil {
     }
     private static void sendAttachPacket(Player p, Entity nearby){
 
-        PacketPlayOutAttachEntity packet = new PacketPlayOutAttachEntity((net.minecraft.world.entity.Entity) NmsUtil.getNMSEntity(nearby), (net.minecraft.world.entity.Entity) NmsUtil.getNMSPlayer(p));
+        PacketPlayOutAttachEntity packet = new PacketPlayOutAttachEntity((net.minecraft.world.entity.Entity) NmsUtil1_19_4.getNMSEntity(nearby), (net.minecraft.world.entity.Entity) NmsUtil1_19_4.getNMSPlayer(p));
         EntityPlayer entityPlayer = ((CraftPlayer) p).getHandle();
         entityPlayer.b.a(packet);
 
@@ -138,7 +142,7 @@ public class NmsUtil {
         if(i != null && i.hasItemMeta() && i.getItemMeta().hasLore()){
             List<String> lore = i.getItemMeta().getLore();
             for(String s : lore){
-                if(s.contains(NmsUtil.format("&4&lBalloon ("))){
+                if(s.contains(NmsUtil1_19_4.format("&4&lBalloon ("))){
                     return true;
                 }
             }
@@ -161,5 +165,12 @@ public class NmsUtil {
     }
     public static String format(String format) {
         return ChatColor.translateAlternateColorCodes('&', format);
+    }
+
+    public static NBTTagCompound getNBTTagFromItemStack(ItemStack i){
+        net.minecraft.world.item.ItemStack item = CraftItemStack.asNMSCopy(i);
+        NBTTagCompound tagCompound = item.u();
+
+        return tagCompound;
     }
 }

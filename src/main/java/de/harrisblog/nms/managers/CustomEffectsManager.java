@@ -22,7 +22,8 @@ public class CustomEffectsManager {
         plugin = Nms.getPlugin();
         customEffects = new HashMap<>();
         this.classes = new Class[] { PotionEffect.class, FeedEffect.class, DamageEffect.class, GodSpeedEffect.class, ImmunityEffect.class, CharizardEffect.class,
-        SnowGlobeEffect.class};
+        SnowGlobeEffect.class, ExpEffect.class, CureDefenseEffect.class, CureAttackEffect.class, AddDurabilityEffect.class, AddDurabilityHeldEffect.class,
+        ReductionEffect.class, HealDefenseEffect.class};
         loadCustomEffects();
     }
 

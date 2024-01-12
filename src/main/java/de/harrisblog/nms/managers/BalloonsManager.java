@@ -1,12 +1,11 @@
 package de.harrisblog.nms.managers;
 
 import de.harrisblog.nms.Nms;
-import de.harrisblog.nms.NmsUtil;
+import de.harrisblog.nms.versions.spigot1_19_4.NmsUtil1_19_4;
 import de.harrisblog.nms.data.Balloon;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,7 +44,7 @@ public class BalloonsManager {
         if(i != null && i.hasItemMeta() && i.getItemMeta().hasLore()){
             List<String> lore = i.getItemMeta().getLore();
             for(String s : lore){
-                if(s.contains(NmsUtil.format("&4&lBalloon ("))){
+                if(s.contains(NmsUtil1_19_4.format("&4&lBalloon ("))){
                     String s1 = s.substring(13, s.length() - 5);
                     for(Balloon balloon : balloons.values()){
                         if(balloon.getName().equalsIgnoreCase(s1)){

@@ -1,9 +1,7 @@
 package de.harrisblog.nms.effects;
 
-import de.harrisblog.nms.NmsUtil;
+import de.harrisblog.nms.versions.spigot1_19_4.NmsUtil1_19_4;
 import de.harrisblog.nms.data.CustomEffect;
-import net.minecraft.world.damagesource.DamageSource;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -21,7 +19,7 @@ public class ImmunityEffect extends CustomEffect {
         EntityDamageEvent damageEvent = (EntityDamageEvent) event;
         if(!(damageEvent.getEntity() instanceof Player)) return;
         Player player = (Player) damageEvent.getEntity();
-        EntityDamageEvent.DamageCause damageSource = NmsUtil.parseDamageCause(args[0]);
+        EntityDamageEvent.DamageCause damageSource = NmsUtil1_19_4.parseDamageCause(args[0]);
         Double chance = Double.parseDouble(args[1]);
         Double rnd = Math.random();
         if(rnd < chance){

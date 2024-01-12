@@ -1,28 +1,18 @@
 package de.harrisblog.nms.commands;
 
 import de.harrisblog.nms.Nms;
-import de.harrisblog.nms.NmsUtil;
+import de.harrisblog.nms.versions.spigot1_19_4.NmsUtil1_19_4;
 import de.harrisblog.nms.data.Balloon;
 import de.harrisblog.nms.data.CustomEffect;
-import net.minecraft.server.level.EntityPlayer;
-import net.minecraft.server.network.PlayerConnection;
-import net.minecraft.world.entity.EntityTypes;
-import net.minecraft.world.entity.ambient.EntityBat;
-import net.minecraft.world.level.World;
+import net.minecraft.nbt.NBTTagCompound;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_19_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_19_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_19_R3.inventory.CraftItemStack;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.Potion;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +33,7 @@ public class NmsCommand implements CommandExecutor {
         }else if(strings.length == 1 && strings[0].equalsIgnoreCase("help") && commandSender.hasPermission("balloons.help")){
             List<String> help = Nms.getPlugin().getConfig().getStringList("messages.help");
             for(String str : help){
-                commandSender.sendMessage(NmsUtil.format(str));
+                commandSender.sendMessage(NmsUtil1_19_4.format(str));
             }
             return true;
         }else if(strings.length == 2 && strings[0].equalsIgnoreCase("give") && commandSender.hasPermission("balloons.give")){
@@ -57,7 +47,21 @@ public class NmsCommand implements CommandExecutor {
             }
             return true;
 
-         }
+         }else if(strings.length == 1 && strings[0].equalsIgnoreCase("reload") && commandSender.hasPermission("balloons.reload")){
+            Nms.getPlugin().reloadConfig();
+            Nms.getBalloonsManager().loadBalloons();
+            commandSender.sendMessage(NmsUtil1_19_4.format("&aSuccessfully reloaded balloons config!"));
+            return true;
+        }else if(strings.length == 1 && strings[0].equalsIgnoreCase("nbt")){
+            if(!(commandSender instanceof Player)) return false;
+            Player p = (Player) commandSender;
+            net.minecraft.world.item.ItemStack item = CraftItemStack.asNMSCopy(p.getItemInHand());
+            NBTTagCompound nbt = item.v();
+            for(String s1 : nbt.e()){
+                p.sendMessage(s1);
+            }
+            return true;
+        }
 
         if(!(commandSender instanceof Player)) return false;
         Player p = (Player) commandSender;
@@ -74,11 +78,11 @@ public class NmsCommand implements CommandExecutor {
         List<Inventory> guiInventories = new ArrayList<>();
         int gui_page = 0;
         int balloon_index = 0;
-        ItemStack placeholder = NmsUtil.getPlaceholderItem();
+        ItemStack placeholder = NmsUtil1_19_4.getPlaceholderItem();
         for(int i=0; i<guiPages; i++){
-            Inventory inventory = Bukkit.createInventory(p, 45, NmsUtil.format("&4&lBalloons Admin"));
+            Inventory inventory = Bukkit.createInventory(p, 45, NmsUtil1_19_4.format("&4&lBalloons Admin"));
             for(int j=0; j<10; j++){
-                inventory.setItem(j, NmsUtil.getPlaceholderItem());
+                inventory.setItem(j, NmsUtil1_19_4.getPlaceholderItem());
             }
             inventory.setItem(17, placeholder);
             inventory.setItem(18, placeholder);
@@ -122,11 +126,11 @@ public class NmsCommand implements CommandExecutor {
         List<Inventory> guiInventories = new ArrayList<>();
         int gui_page = 0;
         int balloon_index = 0;
-        ItemStack placeholder = NmsUtil.getPlaceholderItem();
+        ItemStack placeholder = NmsUtil1_19_4.getPlaceholderItem();
         for(int i=0; i<guiPages; i++){
-            Inventory inventory = Bukkit.createInventory(p, 45, NmsUtil.format("&4&lBalloons"));
+            Inventory inventory = Bukkit.createInventory(p, 45, NmsUtil1_19_4.format("&4&lBalloons"));
             for(int j=0; j<10; j++){
-                inventory.setItem(j, NmsUtil.getPlaceholderItem());
+                inventory.setItem(j, NmsUtil1_19_4.getPlaceholderItem());
             }
             inventory.setItem(17, placeholder);
             inventory.setItem(18, placeholder);
